@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Prognoza_miasta::class.java)
 
         val cities = listOf(
-            "Warszawa", "Kraków", "Wrocław", "Gdańsk", "Poznań",
-            "Łódź", "Szczecin", "Lublin", "Katowice", "Białystok"
+            "Warszawa", "Kraków", "Wrocław", "Gdańsk", "Londyn",
+            "Paryż", "Rzym", "Pekin", "Madryt", "Berlin"
         )
 
         val cityListView = findViewById<ListView>(R.id.cityListView)
@@ -80,38 +80,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
-
         fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 cityText.performClick()
             }
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
-
-
     }
-
-
-
-
-
-//    suspend fun getWeatherFromApi(url: String): String {
-//        return withContext(Dispatchers.IO) {
-//            try {
-//                val connection = URL(url).openConnection() as HttpURLConnection
-//                connection.requestMethod = "GET"
-//                connection.connect()
-//
-//                val responseJSON = connection.inputStream.bufferedReader().readText()
-//                connection.disconnect()
-//                responseJSON
-//
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//                "Błąd połączenia"
-//            }
-//        }
-//    }
 }
