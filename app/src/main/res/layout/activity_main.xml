@@ -12,7 +12,7 @@
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="prognoza pogody"
         android:textColor="#2196F3"
         android:textSize="40sp"
@@ -27,7 +27,7 @@
         android:layout_width="118dp"
         android:layout_height="60dp"
         android:backgroundTint="#2196F3"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Dalej"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:layout_width="302dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed-light"
         android:inputType="text"
         android:text="Wpisz miasto"
         android:textColor="#A29E9E"
@@ -62,13 +62,13 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.515" />
+        app:layout_constraintVertical_bias="0.212" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed"
         android:text="Popularne miasta:"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

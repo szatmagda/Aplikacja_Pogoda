@@ -22,6 +22,7 @@ import java.util.Locale
 import android.Manifest
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,8 +56,13 @@ class MainActivity : AppCompatActivity() {
 
         nextButton.setOnClickListener{
             val city = cityText.text.toString()
-            intent.putExtra("CITY_NAME", city)
-            startActivity(intent)
+
+            if (city.isEmpty()){
+                Toast.makeText(this, "Proszę podać nazwę miasta", Toast.LENGTH_SHORT).show()
+            } else {
+                intent.putExtra("CITY_NAME", city)
+                startActivity(intent)
+            }
         }
 
         cityText.setOnClickListener {

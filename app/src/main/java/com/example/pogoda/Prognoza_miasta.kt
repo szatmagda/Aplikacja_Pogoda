@@ -17,7 +17,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class Prognoza_miasta : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,8 +33,8 @@ class Prognoza_miasta : AppCompatActivity() {
             finish()
         }
 
-        val yourCity = intent.getStringExtra("CITY_NAME") ?: "Brak podanego miasta"
-        findViewById<TextView>(R.id.cityTextView).text = "Twoje miasto - $yourCity"
+        val yourCity = intent.getStringExtra("CITY_NAME") ?: ""
+        findViewById<TextView>(R.id.cityTextView).text = yourCity
 
         val weatherTextView = findViewById<TextView>(R.id.weatherTextView)
 
@@ -54,8 +54,8 @@ class Prognoza_miasta : AppCompatActivity() {
 
                 weatherTextView.text = """
                         Pogoda: $desc
-                        Temperatura: $temp°C, odczuwalne: $feelsLike°C
-                        Odczuwalna: $feelsLike°C
+                        Temperatura: $temp°C
+                        Odczuwalna temp.: $feelsLike°C
                         Wilgotność: $humidity%
                         Ciśnienie: $pressure hPa
                         Wiatr: $windSpeed m/s
