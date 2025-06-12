@@ -20,6 +20,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Locale
 import android.Manifest
+import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
@@ -35,7 +36,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val sharedPreferences = getSharedPreferences("MY_CITY", Context.MODE_PRIVATE)
+        val value = sharedPreferences.getString("CITY_NAME", "Wybierz miasto")
         val cityText = findViewById<EditText>(R.id.cityText)
+        cityText.setText(value)
+
         val nextButton = findViewById<Button>(R.id.nextButton)
         val intent = Intent(this, Prognoza_miasta::class.java)
 
@@ -60,6 +65,8 @@ class MainActivity : AppCompatActivity() {
             if (city.isEmpty()){
                 Toast.makeText(this, "Proszę podać nazwę miasta", Toast.LENGTH_SHORT).show()
             } else {
+                sharedPreferences.edit().putString("CITY_NAME", city).apply()
+
                 intent.putExtra("CITY_NAME", city)
                 startActivity(intent)
             }
