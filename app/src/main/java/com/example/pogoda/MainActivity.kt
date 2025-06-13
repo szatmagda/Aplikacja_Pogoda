@@ -108,6 +108,8 @@ class MainActivity : AppCompatActivity() {
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED
             ) {
                 setCity()
+            } else {
+                Toast.makeText(this, "Brak zgody na lokalizację", Toast.LENGTH_SHORT).show()
             }
         }
     }
