@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("MY_CITY", Context.MODE_PRIVATE)
         val value = sharedPreferences.getString("CITY_NAME", "Wybierz miasto")
+
         val cityText = findViewById<EditText>(R.id.cityText)
         cityText.setText(value)
 
@@ -72,15 +73,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        cityText.setOnClickListener {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
 
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-            } else {
-                val client = LocationServices.getFusedLocationProviderClient(this)
-                client.lastLocation.addOnSuccessListener { location ->
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
+            )
+        } else {
+            setCity()
+        }
+    }
+
+        private fun setCity() {
+            val cityText = findViewById<EditText>(R.id.cityText)
+            val client = LocationServices.getFusedLocationProviderClient(this)
+              client.lastLocation.addOnSuccessListener { location ->
                     if (location != null) {
                         val geocoder = Geocoder(this, Locale.getDefault())
                         val address = geocoder.getFromLocation(location.latitude, location.longitude, 1)
@@ -90,14 +98,16 @@ class MainActivity : AppCompatActivity() {
                         cityText.setText("Brak lokalizacji")
                     }
                 }
-            }
         }
 
-        fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cityText.performClick()
-            }
+
+        override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+            if (requestCode == 100 && grantResults.isNotEmpty()
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
+                setCity()
+            }
         }
     }
-}
