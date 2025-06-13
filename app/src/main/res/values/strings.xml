@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pogoda</string>
+    <string name="welcome_text">prognoza pogody</string>
+    <string name="enter_city_name">Wpisz miasto</string>
+    <string name="next_button">Dalej</string>
+    <string name="return_button">Powrót</string>
+    <string name="text_cities_list">Popularne miasta…</string>
+    <string name="error_city_text">Brak danych</string>
+    <string name="weather_text">Pobieranie informacji…</string>
 </resources>
